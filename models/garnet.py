@@ -26,10 +26,10 @@ param_list = [
         "connection_ratio": connection_ratio,
     }
     for sdim in [10, 30, 50, 100, 200]
-    for sparsity_transition in [0.5]
+    for sparsity_transition in [0.8]
     for action in [10]
     for block_number in [10]
-    for connection_ratio in [0.1]
+    for connection_ratio in [0.8]
 ]
 
 
@@ -42,7 +42,7 @@ class Model(GenericModel):
         self.state_dim = self.block_dim * self.block_number
         self.connection_ratio = params["connection_ratio"]
 
-        self.name = "{}_{}_block_{}_{}".format(
+        self.name = "{}_{}_garnet_{}_{}".format(
             self.state_dim,
             self.action_dim,
             self.sparsity_block,

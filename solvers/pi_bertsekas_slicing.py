@@ -16,26 +16,21 @@ from utils.calculus import (
     bellman_policy_operator,
     iterative_policy_evaluation,
     compute_transition_reward_policy,
+    inv_approximate,
 )
-import matplotlib.pyplot as plt
 
 
-def inv_approximate(matrix: np.ndarray, order=50):
-    x = np.eye(matrix.shape[0]) - matrix
-    return sum(x**i for i in range(order))
-
-
-def inv_approximate(matrix: np.ndarray, tolerance=1e-3):
-    res = np.zeros((matrix.shape[0], matrix.shape[0]))
-    x = np.eye(matrix.shape[0]) - matrix
-    step = 0
-    while True:
-        val = x**step
-        res += val
-        if np.linalg.norm(val) < tolerance:
-            break
-        step += 1
-    return res
+# def inv_approximate(matrix: np.ndarray, tolerance=1e-3):
+#     res = np.zeros((matrix.shape[0], matrix.shape[0]))
+#     x = np.eye(matrix.shape[0]) - matrix
+#     step = 0
+#     while True:
+#         val = x**step
+#         res += val
+#         if np.linalg.norm(val) < tolerance:
+#             break
+#         step += 1
+#     return res
 
 
 class Solver:
@@ -46,7 +41,7 @@ class Solver:
         epsilon_policy_evaluation: float = 1e-3,
         beta_1: float = 0.02,
         beta_2: float = 0.05,
-        fixed_number_of_regions: int = 10,
+        fixed_number_of_regions: int = 100,
         step_approx_y: int = 50,
         epsilon_final_policy_evaluation: float = 1e-3,
         verbose: bool = False,
@@ -65,9 +60,7 @@ class Solver:
         self.epsilon_final_policy_evaluation = epsilon_final_policy_evaluation
         self.step_approx_y = step_approx_y
 
-        self.fixed_partition = FixedValuePartition(
-            self.env, self.discount, fixed_number_of_regions
-        )
+        self.fixed_partition = FixedValuePartition(self.env, self.discount)
 
     def span_state_space(self, value: np.ndarray) -> float:
         return value.max() - value.min()

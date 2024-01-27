@@ -207,3 +207,11 @@ def apply_obo_until_var_small(
             break
 
     return value, variation
+
+
+def inv_approximate(matrix: np.ndarray, order=5000):
+    x = np.eye(matrix.shape[0]) - matrix
+    val = x**0
+    for i in range(order):
+        val += x**i
+    return val

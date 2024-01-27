@@ -11,16 +11,13 @@ from utils.exact_value_function import get_exact_value
 import numpy as np
 import pandas as pd
 import time
-from tqdm import tqdm
-
-tqdm = lambda x: x
 
 
 class Experience:
     def __init__(
         self,
-        discount: float = 0.99,
-        n_exp: int = 5,  # Number of experience with same parameters to measure solving time
+        discount: float = 0.999,
+        n_exp: int = 2,  # Number of experience with same parameters to measure solving time
         solver_path: str = "solvers",
         model_path: str = "models",
         result_path: str = "results",
@@ -185,7 +182,7 @@ class Experience:
         # As transition and reward have been deleted, we load it back.
         exact_value_function = self._compute_exact_value_function_or_save_it(model)
 
-        for _ in tqdm(range(self.n_exp)):
+        for _ in range(self.n_exp):
             solver.__init__(model, self.discount)
             solver.run()
 
@@ -245,41 +242,41 @@ class Experience:
         )
         self.avg_runtimes_dataframe.to_excel(avg_runtime_result_full_path)
 
-        # Make and save standard deviation runtime DataFrame
-        self.std_runtimes_dataframe = self._convert_dictionary_to_pandas_dataframe(
-            self.std_runtimes_dictionary
-        )
-        std_runtime_result_excel_file_name = "{}_std_runtime_{}_{}.xlsx".format(
-            self.method, self.exp_name, self.current_experience_index
-        )
-        std_runtime_result_full_path = os.path.join(
-            self.result_path, std_runtime_result_excel_file_name
-        )
-        self.std_runtimes_dataframe.to_excel(std_runtime_result_full_path)
+        # # Make and save standard deviation runtime DataFrame
+        # self.std_runtimes_dataframe = self._convert_dictionary_to_pandas_dataframe(
+        #     self.std_runtimes_dictionary
+        # )
+        # std_runtime_result_excel_file_name = "{}_std_runtime_{}_{}.xlsx".format(
+        #     self.method, self.exp_name, self.current_experience_index
+        # )
+        # std_runtime_result_full_path = os.path.join(
+        #     self.result_path, std_runtime_result_excel_file_name
+        # )
+        # self.std_runtimes_dataframe.to_excel(std_runtime_result_full_path)
 
         # Make and save average precision DataFrame
-        self.avg_precision_dataframe = self._convert_dictionary_to_pandas_dataframe(
-            self.avg_precision_dictionary
-        )
-        avg_precision_result_excel_file_name = "{}_avg_precision_{}_{}.xlsx".format(
-            self.method, self.exp_name, self.current_experience_index
-        )
-        avg_precision_result_full_path = os.path.join(
-            self.result_path, avg_precision_result_excel_file_name
-        )
-        self.avg_precision_dataframe.to_excel(avg_precision_result_full_path)
+        # self.avg_precision_dataframe = self._convert_dictionary_to_pandas_dataframe(
+        #     self.avg_precision_dictionary
+        # )
+        # avg_precision_result_excel_file_name = "{}_avg_precision_{}_{}.xlsx".format(
+        #     self.method, self.exp_name, self.current_experience_index
+        # )
+        # avg_precision_result_full_path = os.path.join(
+        #     self.result_path, avg_precision_result_excel_file_name
+        # )
+        # self.avg_precision_dataframe.to_excel(avg_precision_result_full_path)
 
-        # Make and save standard deviation precision DataFrame
-        self.std_precision_dataframe = self._convert_dictionary_to_pandas_dataframe(
-            self.std_precision_dictionary
-        )
-        std_precision_result_excel_file_name = "{}_std_precision_{}_{}.xlsx".format(
-            self.method, self.exp_name, self.current_experience_index
-        )
-        std_precision_result_full_path = os.path.join(
-            self.result_path, std_precision_result_excel_file_name
-        )
-        self.std_precision_dataframe.to_excel(std_precision_result_full_path)
+        # # Make and save standard deviation precision DataFrame
+        # self.std_precision_dataframe = self._convert_dictionary_to_pandas_dataframe(
+        #     self.std_precision_dictionary
+        # )
+        # std_precision_result_excel_file_name = "{}_std_precision_{}_{}.xlsx".format(
+        #     self.method, self.exp_name, self.current_experience_index
+        # )
+        # std_precision_result_full_path = os.path.join(
+        #     self.result_path, std_precision_result_excel_file_name
+        # )
+        # self.std_precision_dataframe.to_excel(std_precision_result_full_path)
 
     def print_model_solver_list(self):
         """

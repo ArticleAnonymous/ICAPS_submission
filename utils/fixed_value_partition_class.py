@@ -23,7 +23,7 @@ def afficher(texte, valeur, arrondir=False):
 
 class FixedValuePartition:
     def __init__(
-        self, env: GenericModel, discount: float, fixed_number_of_regions: int
+        self, env: GenericModel, discount: float, fixed_number_of_regions: int = 100
     ) -> None:
         self.env = env
         self.discount = discount

@@ -13,7 +13,7 @@ param_list = [
     }
     for sdim in [100, 200, 500, 1000, 2000]
     for sparsity_transition in [0.3]
-    for action in [50]
+    for action in [10]
 ]
 default_params = param_list[0]
 

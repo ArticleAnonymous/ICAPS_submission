@@ -6,7 +6,7 @@ from scipy.sparse import dok_array
 
 param_list: list = [
     {"size_of_one_room": room_size, "number_of_doors": 1}
-    for room_size in [3, 5, 7, 9, 11]
+    for room_size in [20, 40, 80, 100, 200]
 ]
 default_params = param_list[0]
 

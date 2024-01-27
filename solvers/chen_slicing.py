@@ -20,7 +20,7 @@ class Solver:
         epsilon: float = 1e-3,
         verbose: bool = False,
         max_iter_loop: int = 1000,
-        iter_agg: int = 20,
+        iter_agg: int = 1,
         iter_bellman: int = 100,
     ):
         # Class arguments
@@ -40,7 +40,7 @@ class Solver:
         self.partition = ValuePartition(self.model, self.discount)
         self.contracted_value: np.ndarray
 
-        self.alpha_function = lambda t: 1 / (t + 1)
+        self.alpha_function = lambda t: 1 / (t + 1) ** 2
 
     def run(self):
         start_time = time()
