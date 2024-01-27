@@ -11,11 +11,9 @@ param_list = [
         "min_reward": 0.0,
         "max_reward": 1.0,
     }
-    for sdim in list(range(100, 1100, 200))
-    + list(range(1100, 2100, 400))
-    + list(range(2100, 20000, 1000))
-    for sparsity_transition in [0.01, 0.1, 0.45, 0.65, 1.0]
-    for action in [10, 50, 100]
+    for sdim in [100, 200, 500, 1000, 2000]
+    for sparsity_transition in [0.3]
+    for action in [50]
 ]
 default_params = param_list[0]
 

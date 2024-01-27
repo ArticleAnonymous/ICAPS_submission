@@ -93,11 +93,11 @@ track_R = np.array([
 
 param_list = [
     {"track": track_0, "track_name": "track_0"},
-    {"track": track_L, "track_name": "track_L"},
-    {"track": track_R, "track_name": "track_R"},
+    # {"track": track_L, "track_name": "track_L"},
+    # {"track": track_R, "track_name": "track_R"},
 ]
 
-for step in range(1, 20):
+for step in range(1, 5):
     track_0 = increase_track_size(track_0)
     param_list.append({"track": track_0, "track_name": "track_{}".format(step)})
 

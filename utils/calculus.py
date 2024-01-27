@@ -181,7 +181,7 @@ def get_value_policy_value(
     env: GenericModel, discount: float, value: np.ndarray, precision: float = 1e-3
 ) -> np.ndarray:
     """
-    For any V, returns V^{\pi_V}
+    For any V, returns V pi V
     """
     policy = bellman_operator(env, value, discount).argmax(axis=1)
     transition_policy, reward_policy = compute_transition_reward_policy(env, policy)

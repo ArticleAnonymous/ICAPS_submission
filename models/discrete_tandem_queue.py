@@ -18,8 +18,8 @@ param_list = [
         "lambda": 0.6,
         "mu_1": 0.2,
         "mu_2": 0.2,
-        "B1": k1 + 4,
-        "B2": k1 + 4,
+        "B1": k1 + 6,
+        "B2": k1 + 6,
         "K1": k1,
         "K2": k1,
         "CA": 1,
@@ -28,8 +28,8 @@ param_list = [
         "CS": 1,
         "CR": 1,
     }
-    for k1 in list(range(4, 16))
-    for aa in range(3, 6, 2)
+    for k1 in [4, 6, 8, 10, 12]
+    for aa in [3]
 ]
 default_params = param_list[0]
 

@@ -16,10 +16,8 @@ param_list = [
         "nb_serv": action_dim - 1,  # action space dimension
         "max_queue_length": state_dim - 1,  # state space dimension
     }
-    for action_dim in [2, 10, 100]
-    for state_dim in list(range(10, 100, 20))
-    + list(range(100, 1100, 200))
-    + list(range(1100, 10000, 1000))
+    for action_dim in [10]
+    for state_dim in [5, 10, 20, 30, 50]
 ]
 default_params = param_list[0]
 

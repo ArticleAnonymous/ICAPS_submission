@@ -65,12 +65,8 @@ def build_models(folder_path=os.path.join(os.getcwd(), "models")):
 
 def build_model_list(folder_path: str = os.path.join(os.getcwd(), "models")) -> list:
     models_dict = build_models(folder_path)
-    print("Select wanted model for benchmark :")
-    for i, elem in enumerate(models_dict.keys()):
-        print("{} : {}".format(i, elem))
-    model_index = int(input())
+    models = [mod for model_list in list(models_dict.values()) for mod in model_list]
 
-    models = list(models_dict.values())[model_index]
     models.sort(key=lambda model: model.state_dim)
     return models
 
@@ -122,18 +118,7 @@ def build_solver_list(solver_path: str = os.path.join(os.getcwd(), "solvers")) -
         "bertsekas",
         "chen",
     ]
-
-    print()
-    print("Choose wanted solvers in the following list. (Ex : '2,3,4' or 'all')")
-    for i, solver_name in enumerate(possible_solvers):
-        print("{} : {}".format(i, solver_name))
-    solvers_indices = input()
-    if solvers_indices == "all":
-        wanted_solvers = possible_solvers
-    else:
-        solvers_indices = solvers_indices.replace(" ", "")
-        solvers_indices = [int(elem) for elem in solvers_indices.split(",")]
-        wanted_solvers = [possible_solvers[index] for index in solvers_indices]
+    wanted_solvers = possible_solvers
 
     force_remove_marmote = "marmote" not in wanted_solvers
     force_remove_gurobi = "gurobi" not in wanted_solvers
@@ -144,12 +129,6 @@ def build_solver_list(solver_path: str = os.path.join(os.getcwd(), "solvers")) -
     )
     force_remove_bertsekas = "bertsekas" not in wanted_solvers
     force_remove_chen = "chen" not in wanted_solvers
-
-    if not linux() and not force_remove_marmote:
-        print("Skipping marmote as the OS is not Linux.")
-    if not force_remove_gurobi:
-        if not gurobi_license():
-            print("Skipping Gurobi as there is not full Gurobi license.")
 
     if not linux() or force_remove_marmote:
         solver_name_list = [

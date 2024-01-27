@@ -88,14 +88,15 @@ def make_track_bigger(track: np.ndarray):
     return track
 
 
-max_track_size = 5
-probabilities_fail_action = [0.01, 0.1]
-maximum_speed = [2, 3]
+max_track_size = 4
+probabilities_fail_action = [0.1]
+maximum_speed = [3]
 tracks_with_names = [
-    ("track_L", track_L),
-    ("track_R", track_R),
+    # ("track_L", track_L),
+    # ("track_R", track_R),
     ("track_1", minitrack),
 ]
+
 
 for track_index in range(max_track_size):
     minitrack = make_track_bigger(minitrack)

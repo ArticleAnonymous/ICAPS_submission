@@ -25,13 +25,11 @@ param_list = [
         "block_number": block_number,
         "connection_ratio": connection_ratio,
     }
-    for sdim in list(range(10, 100, 10))
-    + list(range(100, 1000, 100))
-    + list(range(1000, 10000, 1000))
-    for sparsity_transition in [0.01, 0.1, 0.25, 0.45, 0.65, 0.85, 1.0]
-    for action in [10, 50, 100]
-    for block_number in [5, 10, 50]
-    for connection_ratio in [0.01, 0.1, 0.2]
+    for sdim in [10, 30, 50, 100, 200]
+    for sparsity_transition in [0.5]
+    for action in [10]
+    for block_number in [10]
+    for connection_ratio in [0.1]
 ]
 
 

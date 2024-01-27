@@ -46,14 +46,18 @@ class Solver:
         start_time = time()
         self.value = np.zeros((self.model.state_dim))
 
-        for n in range(self.max_iter_loop):
+        n = 0
+
+        while norminf(
+            self.value - optimal_bellman_operator(self.model, self.value, self.discount)
+        ) > self.epsilon * (1 - self.discount):
+            n += 1
             for _ in range(self.iter_bellman):
                 self.new_value = optimal_bellman_operator(
                     self.model, self.value, self.discount
                 )
-                if (
-                    norminf(self.new_value - self.value)
-                    < self.epsilon  # * (1 - self.discount)
+                if norminf(self.new_value - self.value) < self.epsilon * (
+                    1 - self.discount
                 ):
                     self.runtime = time() - start_time
                     return

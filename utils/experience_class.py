@@ -64,9 +64,9 @@ class Experience:
         # Current experience index
         self.def_rng = np.random.default_rng(int(time.time()))
 
-        self.current_experience_index = self.def_rng.integers(
-            0, 1000
-        )  # self._get_current_experience_index()
+        self.current_experience_index = 0  # self.def_rng.integers(
+        # 0, 1000
+        # )  # self._get_current_experience_index()
 
         # Build model list
         self._get_model_list()
@@ -79,7 +79,8 @@ class Experience:
         if self.verbose:
             self.print_model_solver_list()
 
-        self.exp_name = input("Enter experience name \n")
+        # self.exp_name = input("Enter experience name \n")
+        self.exp_name = "ICAPS_agg"
 
     def run(self):
         """

@@ -6,4 +6,3 @@ ipython
 gym-toytext
 openpyxl
 tqdm
-mazelib
