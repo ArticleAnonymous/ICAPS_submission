@@ -1,0 +1,9 @@
+git+https://github.com/OrsoF/pymdptoolbox_update.git
+pandas
+gurobipy
+gymnasium
+ipython
+gym-toytext
+openpyxl
+tqdm
+mazelib

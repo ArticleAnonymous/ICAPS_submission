@@ -1,0 +1,92 @@
+"""
+This code allows to slice a state space progressively 
+along an evolving value function.
+"""
+
+
+import numpy as np
+from utils.generic_model import GenericModel
+from time import time
+from utils.generic_model import GenericModel
+from utils.value_partition_class import ValuePartition
+from utils.calculus import optimal_bellman_operator, norminf, apply_obo_until_var_small
+
+
+class Solver:
+    def __init__(
+        self,
+        model: GenericModel,
+        discount: float,
+        epsilon: float = 1e-3,
+        verbose: bool = False,
+        max_iter_loop: int = 1000,
+        iter_agg: int = 20,
+        iter_bellman: int = 100,
+    ):
+        # Class arguments
+        self.model = model
+        self.discount = discount
+        self.epsilon = epsilon
+        self.name = "chen_slicing"
+        self.verbose = verbose
+
+        self.max_iter_loop, self.iter_agg, self.iter_bellman = (
+            max_iter_loop,
+            iter_agg,
+            iter_bellman,
+        )
+
+        # Variables
+        self.partition = ValuePartition(self.model, self.discount)
+        self.contracted_value: np.ndarray
+
+        self.alpha_function = lambda t: 1 / (t + 1)
+
+    def run(self):
+        start_time = time()
+        self.value = np.zeros((self.model.state_dim))
+
+        for n in range(self.max_iter_loop):
+            for _ in range(self.iter_bellman):
+                self.new_value = optimal_bellman_operator(
+                    self.model, self.value, self.discount
+                )
+                if (
+                    norminf(self.new_value - self.value)
+                    < self.epsilon  # * (1 - self.discount)
+                ):
+                    self.runtime = time() - start_time
+                    return
+                self.value = self.new_value
+
+            self.partition = ValuePartition(self.model, self.discount)
+            self.partition.divide_regions_along_tv(
+                self.value,
+                self.epsilon,
+                np.zeros((len(self.partition.states_in_region))),
+            )
+            self.partition._build_weights()
+            self.contracted_value = self.partition.weights @ self.value
+            alpha = self.alpha_function(n * (self.iter_agg + self.iter_bellman))
+
+            for _ in range(self.iter_agg):
+                self.extended_value = (
+                    self.partition._partial_phi() @ self.contracted_value
+                )
+                for k in range(len(self.partition.states_in_region)):
+                    ss = np.random.choice(self.partition.states_in_region[k])
+                    tsv_action = np.zeros((self.model.action_dim))
+                    for aa in range(self.model.action_dim):
+                        tsv_action[aa] = (
+                            self.model.reward_matrix[ss, aa]
+                            + self.discount
+                            * self.model.transition_matrix[aa].getrow(ss)
+                            @ self.extended_value
+                        )
+                    self.contracted_value[k] = (1 - alpha) * self.contracted_value[
+                        k
+                    ] + alpha * max(tsv_action)
+
+            self.value = self.partition._partial_phi().dot(self.contracted_value)
+
+        assert False, "Finished without convergence."

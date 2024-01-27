@@ -1,3 +1,5 @@
+# Progressive State Space Disaggregation for Infinite Horizon Dynamic Programming
+
 How to use the repository :
 - pip install -r requirements.txt
 - python main.py
@@ -9,3 +11,8 @@ Models implemented here :
 - Randomly generated MDPs (Archibald, T. W., K. I. M. McKinnon, and L. C. Thomas. "On the generation of markov decision processes." Journal of the Operational Research Society 46.3 (1995): 354-361.)
 - Sutton tracks
 - Barto tracks
+- Queue with Impatience
+- Random Weakly Coupled Blocks 
+
+Remarks :
+- You can observe first results in 5 minutes run but whole experimence takes several weeks.
