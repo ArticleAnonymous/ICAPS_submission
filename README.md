@@ -9,10 +9,10 @@ Models implemented here :
 - Tandem Queue (Tournaire, Thomas, et al. "Factored reinforcement learning for auto-scaling in tandem queues." NOMS 2022-2022 IEEE/IFIP Network Operations and Management Symposium. IEEE, 2022.)
 - Four Rooms (Hengst, Bernhard. "Hierarchical approaches." Reinforcement Learning: State-of-the-Art. Berlin, Heidelberg: Springer Berlin Heidelberg, 2012. 293-323.)
 - Randomly generated MDPs (Archibald, T. W., K. I. M. McKinnon, and L. C. Thomas. "On the generation of markov decision processes." Journal of the Operational Research Society 46.3 (1995): 354-361.)
-- Sutton tracks
-- Barto tracks
-- Queue with Impatience
-- Random Weakly Coupled Blocks 
+- Sutton tracks (Sutton, Barto, RL an Introduction Example 5.4 p.127)
+- Barto tracks (Barto, Learning to Act Using Real-Time Dynamic Programming)
+- Queue with Impatience (Jean-Marie, A., & Hyon, E. (2009). Scheduling in a queuing system with impatience and setup costs)
+- Garnet MDPs (Bridging the gap between imitation learning and inverse reinforcement learning)
 
 Remarks :
 - You can observe first results in 5 minutes run but whole experimence takes several weeks.
