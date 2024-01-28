@@ -63,3 +63,5 @@ class Model(GenericModel):
                 self.transition_matrix[aa][ss, 0] += (
                     1 - self.transition_matrix[aa][ss].sum()
                 )
+
+        self.transition_matrix = [matrix.tocsr() for matrix in self.transition_matrix]

@@ -64,6 +64,8 @@ class Model(GenericModel):
         self.add_connections(self.connection_ratio)
         self.normalize()
 
+        self.transition_matrix = [matrix.tocsr() for matrix in self.transition_matrix]
+
     def build_random_block(self, size):
         return random(
             size,

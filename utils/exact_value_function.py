@@ -34,7 +34,6 @@ def compute_exact_value(
     warning: bool = True,
     epsilon_exact_value: float = 1e-6,
     max_iter_exact_value: int = int(1e8),
-    skip_check: bool = True,
 ) -> np.ndarray:
     """
     Given a model, we compute the exact value function
@@ -50,7 +49,6 @@ def compute_exact_value(
             reward=model.reward_matrix,
             epsilon=epsilon_exact_value,
             max_iter=max_iter_exact_value,
-            skip_check=skip_check,
         )
     elif method == dis_str:
         solver = ValueIteration(
@@ -59,7 +57,6 @@ def compute_exact_value(
             discount=discount,
             epsilon=epsilon_exact_value,
             max_iter=max_iter_exact_value,
-            skip_check=skip_check,
         )
     elif method == tot_str:
         solver = ValueIteration(
@@ -68,7 +65,6 @@ def compute_exact_value(
             discount=1.0,
             epsilon=epsilon_exact_value,
             max_iter=max_iter_exact_value,
-            skip_check=skip_check,
         )
     solver.run()
     return np.array(solver.V)
