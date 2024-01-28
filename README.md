@@ -1,6 +1,8 @@
 # Progressive State Space Disaggregation for Infinite Horizon Dynamic Programming
 
-How to use the repository in three steps :
+How to use the repository in few steps :
+- git clone https://github.com/ArticleAnonymous/ICAPSagg.git
+- cd ICAPSagg
 - pip install -r requirements.txt
 - python main.py
 - observe results in results/discounted_avg_runtime_ICAPS_agg_0.xlsx
