@@ -22,7 +22,7 @@ class Solver:
         self,
         model: GenericModel,
         discount: float,
-        epsilon: float = 1e-3,
+        epsilon: float = 1e-3,  # Final Precision
         verbose: bool = False,
     ):
         # Class arguments

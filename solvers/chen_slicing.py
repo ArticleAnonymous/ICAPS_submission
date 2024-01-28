@@ -17,7 +17,7 @@ class Solver:
         self,
         model: GenericModel,
         discount: float,
-        epsilon: float = 1e-3,
+        epsilon: float = 1e-3,  # Final Precision
         verbose: bool = False,
         max_iter_loop: int = 1000,
         iter_agg: int = 1,

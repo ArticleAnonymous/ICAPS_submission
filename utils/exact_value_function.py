@@ -1,3 +1,5 @@
+# Generate the exact solution of a given model.
+
 from mdptoolbox.mdp import (
     RelativeValueIteration,
     ValueIteration,

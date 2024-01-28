@@ -1,3 +1,5 @@
+# Function used for partition calculus.
+
 import numpy as np
 from typing import List
 

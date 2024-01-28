@@ -50,7 +50,7 @@ class Solver:
         value = np.zeros((self.env.state_dim))
         while True:
             eval_iter += 1
-            new_value = reward_policy + self.discount * transition_policy.dot(value)
+            new_value = reward_policy + self.discount * transition_policy @ value
             variation = np.absolute(new_value - value).max()
             if (
                 variation

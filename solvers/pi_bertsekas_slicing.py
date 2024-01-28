@@ -13,7 +13,6 @@ from utils.calculus import (
     norminf,
     bellman_operator,
     value_span_on_regions,
-    bellman_policy_operator,
     iterative_policy_evaluation,
     compute_transition_reward_policy,
     inv_approximate,
@@ -33,6 +32,18 @@ from utils.calculus import (
 #     return res
 
 
+def bellman_policy_operator(
+    value: np.ndarray,
+    discount: float,
+    transition_policy: np.ndarray,
+    reward_policy: np.ndarray,
+) -> np.ndarray:
+    """
+    Returns R^pi + gamma . T^pi @ value
+    """
+    return reward_policy + discount * transition_policy @ value
+
+
 class Solver:
     def __init__(
         self,
@@ -41,7 +52,6 @@ class Solver:
         epsilon_policy_evaluation: float = 1e-3,
         beta_1: float = 0.02,
         beta_2: float = 0.05,
-        fixed_number_of_regions: int = 100,
         step_approx_y: int = 50,
         epsilon_final_policy_evaluation: float = 1e-3,
         verbose: bool = False,
@@ -54,7 +64,6 @@ class Solver:
         )
         self.beta_1 = beta_1
         self.beta_2 = beta_2
-        self.fixed_number_of_regions = fixed_number_of_regions
         self.name = "pi_bertsekas_slicing"
         self.verbose = verbose
         self.epsilon_final_policy_evaluation = epsilon_final_policy_evaluation

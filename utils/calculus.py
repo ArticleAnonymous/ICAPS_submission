@@ -1,7 +1,8 @@
+# Function used for general MDP calculus
+
 import numpy as np
 from utils.generic_model import GenericModel
 from typing import Tuple, List
-from scipy.sparse import lil_matrix
 
 
 def norminf(value: np.ndarray) -> float:

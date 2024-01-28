@@ -18,7 +18,7 @@ class Solver:
         self,
         env: GenericModel,
         discount: float,
-        epsilon: float = 1e-3,
+        epsilon: float = 1e-3,  # Final Precision
     ):
         # Class arguments
         self.env = env

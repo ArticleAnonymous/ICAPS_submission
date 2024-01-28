@@ -31,8 +31,8 @@ class Solver:
         self,
         env: GenericModel,
         discount: float,
-        epsilon_policy_evaluation: float = 1e-3,
-        epsilon_final_policy_evaluation: float = 1e-3,
+        epsilon_policy_evaluation: float = 1e-3,  # Policy Evaluation Precision
+        epsilon_final_policy_evaluation: float = 1e-3,  # Final Precision
         epsilon_variation: float = 1e-3,
         verbose: bool = False,
     ):

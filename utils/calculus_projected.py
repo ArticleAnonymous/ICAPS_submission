@@ -1,3 +1,5 @@
+# Function used for general MDP calculus with projections
+
 import numpy as np
 from utils.generic_model import GenericModel
 from typing import List, Tuple

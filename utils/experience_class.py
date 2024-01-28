@@ -16,8 +16,8 @@ import time
 class Experience:
     def __init__(
         self,
-        discount: float = 0.999,
-        n_exp: int = 2,  # Number of experience with same parameters to measure solving time
+        discount: float = 0.999,  # Discount factor
+        n_exp: int = 10,  # Number of experience with same parameters to measure solving time
         solver_path: str = "solvers",
         model_path: str = "models",
         result_path: str = "results",

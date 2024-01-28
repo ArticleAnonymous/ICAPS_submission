@@ -1,7 +1,4 @@
-import sys
-from IPython.core import ultratb
-
-sys.excepthook = ultratb.FormattedTB(color_scheme="Linux", call_pdb=False)
+# Run main.py to run an experiment.
 
 from utils.experience_class import Experience
 
