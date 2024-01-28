@@ -1,3 +1,8 @@
+##########################################
+#  Sutton & Barto - RL, An Introduction  #
+##########################################
+
+
 import numpy as np
 from utils.generic_model import GenericModel
 from scipy.sparse import dok_array

@@ -1,4 +1,4 @@
-# The model can be found in Tournaire - Factored reinforcement learning for auto-scaling in tandem queues
+#  Tournaire - Factored reinforcement learning for auto-scaling in tandem queues
 
 import numpy as np
 from utils.generic_model import GenericModel

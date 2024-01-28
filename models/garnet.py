@@ -1,4 +1,4 @@
-# Random block MDP - Weakly coupled MDP:
+# Garnet MDP - Weakly coupled MDP:
 # - Divide the state space in n blocks
 # - Ensure a random evolution through each block
 # - Connect blocks with sparse non zeros transitions

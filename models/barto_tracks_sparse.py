@@ -1,4 +1,6 @@
-# Can be found in Barto - Learning to act using real-time dynamic programming
+#################################################################
+#  Barto - Learning to act using real-time dynamic programming  #
+#################################################################
 
 import numpy as np
 from utils.generic_model import GenericModel
