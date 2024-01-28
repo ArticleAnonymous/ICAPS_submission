@@ -7,7 +7,6 @@ import shutil
 import importlib
 import os
 import importlib.util
-import gurobipy as grb
 
 from utils.generic_model import GenericModel
 from typing import List
@@ -73,20 +72,6 @@ def build_model_list(folder_path: str = os.path.join(os.getcwd(), "models")) -> 
     return models
 
 
-def gurobi_license() -> bool:
-    """
-    To check if the Gurobi license exists or not.
-    Output : True if license, False otherwise.
-    """
-    gurobi_log_string = "gurobi.log"
-    grb.Env(gurobi_log_string)
-    f = open(gurobi_log_string, "r")
-    log = f.read()
-    f.close()
-    os.remove(os.path.join(os.getcwd(), gurobi_log_string))
-    return "Restricted" not in log
-
-
 def linux() -> bool:
     """
     To check if the system runs on Linux.
@@ -145,13 +130,6 @@ def build_solver_list(solver_path: str = os.path.join(os.getcwd(), "solvers")) -
             for solver_name in solver_name_list
             if "gurobi" not in solver_name
         ]
-
-    # if not gurobi_license():
-    #     solver_name_list = [
-    #         solver_name
-    #         for solver_name in solver_name_list
-    #         if "gurobi" not in solver_name
-    #     ]
 
     if force_remove_slicing:
         solver_name_list = [

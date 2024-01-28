@@ -1,4 +1,4 @@
-git+https://github.com/OrsoF/pymdptoolbox_update.git
+pymdptoolbox
 pandas
 ipython
 openpyxl
